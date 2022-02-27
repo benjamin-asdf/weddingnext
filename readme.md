@@ -1,5 +1,5 @@
-# ClojureScript App Template
-Basic setup for tinkering with CLJS browser applications. Not intended for production use.
+# ClojureScript Weddingnext Template
+Basic setup for tinkering with CLJS browser weddingnextlications. Not intended for production use.
 
 What's inside:
 
@@ -8,7 +8,7 @@ What's inside:
 - re-frame + tools for development/debugging
 - Tailwind CSS
 - Very basic PWA setup (uncomment the code in `index.html` to use manifest and ServiceWorker)
-
+- [ ]
 ## Installation
 ```shell
 npm install

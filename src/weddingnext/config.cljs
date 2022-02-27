@@ -1,3 +1,3 @@
-(ns app.config)
+(ns weddingnext.config)
 
 (goog-define BACKEND-URL "See config/ directory.")

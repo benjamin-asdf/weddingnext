@@ -1,4 +1,4 @@
-(ns app.db
+(ns weddingnext.db
   (:require [re-frame.core :as rf]))
 
 (def init-db {:counter 0})

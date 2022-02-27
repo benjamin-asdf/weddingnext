@@ -13,8 +13,8 @@
                       :asset-path "/js"
 
                       :modules    {:main
-                                   {:entries [app.core]
-                                    :init-fn app.core/init}}
+                                   {:entries [weddingnext.core]
+                                    :init-fn weddingnext.core/init}}
 
                       :dev        {:compiler-options
                                    {:closure-defines {re-frame.trace.trace-enabled?        true

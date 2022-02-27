@@ -5,12 +5,14 @@
     [re-frame.core :as rf]
     ;; components
     [weddingnext.components.lake :refer [lake]]
+    [weddingnext.components.door :refer [door]]
     [weddingnext.components.counter :refer [counter]]))
 
 (defn weddingnext []
   [:main
    ;; [counter]
-   [lake]
+   ;; [lake]
+   [door]
    ;; [(fn []
    ;;    [:p "fo"])]
    ;; [lake]

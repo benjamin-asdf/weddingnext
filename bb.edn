@@ -3,7 +3,21 @@
                   :task (shell "npm" "run" "release")}
          build {:depends [build-1]
                 :task (shell "npm" "run" "twprod")}
-         deploy {:task (shell
+         deploy-add {:task (shell
+                            {:dir "public"}
+                            "git"
+                            "add"
+                            "--"
+                            ".")}
+         deploy-commit {:task (shell
+                               {:dir "public"}
+                               "git"
+                               "commit"
+                               "--allow-empty"
+                               "-m"
+                               "deploy")}
+         deploy {:depends [deploy-add deploy-commit]
+                 :task (shell
                         {:dir "public"}
                         "git"
                         "push"

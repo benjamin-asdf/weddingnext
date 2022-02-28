@@ -1,6 +1,7 @@
 (ns
     weddingnext.components.door
     (:require
+     [weddingnext.specs :as ws]
      [re-frame.core :as rf]))
 
 (defn
@@ -27,13 +28,14 @@
 (defn
   submit-h
   [{::keys [answer] :as db}]
-  (let [db (update db ::counter inc)]
-    (assoc
-      db
-      ::good-answer?
-      (or
-       (> (::counter db) 2)
-       (correct? answer)))))
+  (let [db (update db ::counter inc)
+        good-answer? (or
+                      (> (::counter db) 2)
+                      (correct? answer))]
+    (cond->
+        db
+        good-answer?
+        (assoc ::ws/page :page/lake))))
 
 (defn
   door
@@ -43,10 +45,10 @@
      "Willkommen"
      [:div
       [:p
-       {:style {:font-size "1vw"
+       {:style {:font-size "1.2vw"
                 :width "800px"}}
        "Dein magischer Stein zeigt dir eine maechtige Tuere. "
-       "Auf der Tuere sind Buchstaben, deren strahlen "
+       "Im Stein sind Buchstaben eingraviert, deren strahlen "
        "dich an Sternenlich erinnert. "
        "Es is ein Raetsel. "]
       [:div.absolute
@@ -89,14 +91,11 @@
  (fn [db _]
    (submit-h db)))
 
-;; (rf/reg-event-fx
-;;  ::submit
-;;  (fn [{:keys [db]} _]
-;;    {::submit (::answer db)}))
-
 (rf/reg-event-db
  ::update-answer
  (fn [db [_ s]]
    (assoc db ::answer s)))
 
-(comment @re-frame.db/app-db)
+(comment
+  @re-frame.db/app-db
+  (swap! re-frame.db/app-db assoc ::ws/page :page/door))

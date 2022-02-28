@@ -1,22 +1,23 @@
 (ns weddingnext.core
   (:require
-    [reagent.dom :as rdom]
-    [weddingnext.db]
-    [re-frame.core :as rf]
-    ;; components
-    [weddingnext.components.lake :refer [lake]]
-    [weddingnext.components.door :refer [door]]
-    [weddingnext.components.counter :refer [counter]]))
+   [reagent.dom :as rdom]
+   [weddingnext.db]
+   [re-frame.core :as rf]
+   [weddingnext.specs :as ws]
+   ;; components
+   [weddingnext.components.lake :refer [lake]]
+   [weddingnext.components.door :refer [door]]
+   [weddingnext.components.counter :refer [counter]]))
+
+(rf/reg-sub ::ws/page ::ws/page)
 
 (defn weddingnext []
-  [:main
-   ;; [counter]
-   ;; [lake]
-   [door]
-   ;; [(fn []
-   ;;    [:p "fo"])]
-   ;; [lake]
-   ])
+  (let [page @(rf/subscribe [::ws/page])]
+    [:main
+     ;; [counter]
+     ({:page/door [door]
+       :page/lake [lake]}
+      page)]))
 
 ;; start is called by init and after code reloading finishes
 (defn ^:dev/after-load start []

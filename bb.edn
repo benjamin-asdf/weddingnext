@@ -1,35 +1,16 @@
-{:tasks
- {
-  clean
-  (shell "npm"
-         "run"
-         "clean")
-  build-1
-  {:depends [clean]
-   :task
-   (shell "npm"
-          "run"
-          "release")}
-  build
-  {:depends [build-1]
-   :task
-   (shell "npm"
-          "run"
-          "twprod")}
-  deploy
-  {:task
-   (shell
-    {:dir
-     "public"}
-    "git"
-    "push"
-    "--force"
-    "git@github.com:benjamin-asdf/benjamin-asdf.github.io.git"
-    "master:gh-pages")}
-
-  build-deploy
-  {:depends [build deploy]}}
-
- browse
- (shell "xdg-open" "https://benjamin-asdf.github.io")
- }
+{:tasks {clean (shell "npm" "run" "clean")
+         build-1 {:depends [clean]
+                  :task (shell "npm" "run" "release")}
+         build {:depends [build-1]
+                :task (shell "npm" "run" "twprod")}
+         deploy {:task (shell
+                        {:dir "public"}
+                        "git"
+                        "push"
+                        "--force"
+                        "git@github.com:benjamin-asdf/benjamin-asdf.github.io.git"
+                        "master:gh-pages")}
+         build-deploy {:depends [build deploy]}
+         browse (shell
+                 "xdg-open"
+                 "https://benjamin-asdf.github.io")}}

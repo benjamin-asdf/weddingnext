@@ -2,8 +2,6 @@
   (:require-macros [weddingnext.slurp :refer [slurp]])
   (:require [re-frame.core :as rf]))
 
-
-
 (def asci
   (slurp "public/art/lake"))
 

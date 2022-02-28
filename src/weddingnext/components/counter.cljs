@@ -55,4 +55,5 @@
     (assoc db :counter 0)))
 
 
-;; (defn )
+(comment
+  @re-frame.db/app-db)

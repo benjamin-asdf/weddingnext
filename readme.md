@@ -1,5 +1,12 @@
-# ClojureScript Weddingnext Template
-Basic setup for tinkering with CLJS browser weddingnextlications. Not intended for production use.
+# weddingnext
+
+This is a just for fun clojurescript.
+I made this as weddinggift to my cousin.
+
+copied from clojure script template.
+
+
+# ClojureScript Template
 
 What's inside:
 
@@ -8,7 +15,8 @@ What's inside:
 - re-frame + tools for development/debugging
 - Tailwind CSS
 - Very basic PWA setup (uncomment the code in `index.html` to use manifest and ServiceWorker)
-- [ ]
+
+
 ## Installation
 ```shell
 npm install
@@ -19,9 +27,6 @@ npm run dev
 # run tailwind in a separate terminal
 npm run twdev
 ```
-
-## IntelliJ + Cursive
-Run `npm run pom` to generate `pom.xml` file for better project indexing.
 
 ## Dev Tools
 To show re-frame-10x panel press <kbd>Ctrl</kbd>+<kbd>H</kbd>.

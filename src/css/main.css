@@ -6,7 +6,6 @@ body {
     background: #17161e;
     color: #faf7f7;
     margin: 20px;
-    /* text-overflow:  ; */
 }
 
 :root {
@@ -15,7 +14,7 @@ body {
 
 @layer components {
     .btn {
-        @weddingnext ly bg-amber-50 font-bold px-3 py-0.5 rounded text-center text-black;
+        @apply ly bg-amber-50 font-bold px-3 py-0.5 rounded text-center text-black;
     }
 }
 

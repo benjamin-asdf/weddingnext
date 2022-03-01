@@ -7,6 +7,7 @@
    ;; components
    [weddingnext.components.lake :refer [lake]]
    [weddingnext.components.door :refer [door]]
+   [weddingnext.components.lake-result :refer [lake-result]]
    [weddingnext.components.counter :refer [counter]]))
 
 (rf/reg-sub ::ws/page ::ws/page)
@@ -16,7 +17,8 @@
     [:main
      ;; [counter]
      ({:page/door [door]
-       :page/lake [lake]}
+       :page/lake [lake]
+       :page/lake-result [lake-result]}
       page)]))
 
 ;; start is called by init and after code reloading finishes

@@ -13,6 +13,16 @@
     (.toLowerCase
      answer))))
 
+(rf/reg-sub
+ ::counter
+ (fn [db]
+   (::counter db)))
+
+(rf/reg-sub
+ ::answer
+ (fn [db]
+   (::answer db)))
+
 (defn
   door
   []
@@ -59,16 +69,6 @@
         good-answer?
         (assoc ::ws/page :page/lake))))
 
-(rf/reg-sub
- ::counter
- (fn [db]
-   (::counter db)))
-
-(rf/reg-sub
- ::answer
- (fn [db]
-   (::answer db)))
-
 (rf/reg-event-db
  ::submit
  (fn [db _]
@@ -87,4 +87,6 @@
 
   (set! (..  (. js/document querySelector ":root") -style -fontSize) )
 
-  (swap! re-frame.db/app-db assoc ::ws/page :page/door))
+  (swap! re-frame.db/app-db assoc ::ws/page :page/door)
+  (reset! re-frame.db/app-db weddingnext.db/init-db)
+  )

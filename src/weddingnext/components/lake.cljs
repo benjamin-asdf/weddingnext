@@ -9,9 +9,9 @@
   lake
   []
   (let [answer @(rf/subscribe [::answer])]
-    [:div
+    [:div.w-16
      [:p
-      {:style {:max-width 1000}}
+      ;; {:style {:max-width 1000}}
       (str
        "Du kommst zu einem See. Do hoerst sanftes Plaetschern."
        " Eine Seerose "
@@ -31,7 +31,7 @@
        "und nach 30 Tagen der See komplett bedeckt ist, "
        "an welchem Tag ist die Healfte des Sees bedeckt? "]
 
-     [:pre
+     [:pre.w-16
       {:style {
                ;; :font-size ".9vw"
                :font-family :monospace

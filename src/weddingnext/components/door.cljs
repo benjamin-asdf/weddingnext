@@ -7,23 +7,62 @@
 (defn
   answer-input
   [input]
-  [:input
-   {:style {:margin-bottom "5vw"
-            :color "#F689FF"
-            :background-color "#2e2d35"}
+  [:input.m-3.w-16.h-8
+   {:style
+    {:color "#F689FF"
+     :background-color "#2e2d35"}
     :type "text"
     :value input
-    :on-change (fn
-                 [e]
-                 (let [answer (-> e .-target .-value)]
-                   (rf/dispatch
-                    [::update-answer answer])))}])
+    :on-change
+    (fn
+      [e]
+      (let [answer (-> e .-target .-value)]
+        (rf/dispatch
+         [::update-answer answer])))}])
 
 (defn
   correct?
   [answer]
   (#{"merle" "katja"}
-   (.toLowerCase answer)))
+   (.trim
+    (.toLowerCase
+     answer))))
+
+(defn
+  door
+  []
+  (let [input @(rf/subscribe [::answer])]
+    [:h1.w-30
+     "Willkommen"
+     [:div
+      [:p.mb-4
+       "Dein magischer Stein zeigt dir eine maechtige Tuere. "
+       "Im Stein sind Buchstaben eingraviert, deren strahlen "
+       "dich an Sternenlich erinnert. "
+       "Es is ein Raetsel. "]
+      [:div.mt-1
+       {:class
+        "space-y-2 m-0.5"
+        :style
+        {:color "#6da2bc"
+         :text-align :center
+         :margin-top "1vw"
+         :border-color "#feb48f"
+         :border-style "double"
+         :border-width "10px"}}
+       [:p.text-2xl
+        {:class "mt-3"}
+        "Sprich Kind und tritt ein"]
+       [:div
+        [answer-input input]
+        [:button.btn
+         {:style
+          {:color "#F689FF"
+           :background-color "#2e2d35"}
+          :on-click (fn
+                      [_]
+                      (rf/dispatch [::submit]))}
+         [:p.m-1 "ok"]]]]]]))
 
 (defn
   submit-h
@@ -36,45 +75,6 @@
         db
         good-answer?
         (assoc ::ws/page :page/lake))))
-
-(defn
-  door
-  []
-  (let [input @(rf/subscribe [::answer])]
-    [:h1
-     "Willkommen"
-     [:div
-      [:p
-       {:style {:font-size "1.2vw"
-                :width "800px"}}
-       "Dein magischer Stein zeigt dir eine maechtige Tuere. "
-       "Im Stein sind Buchstaben eingraviert, deren strahlen "
-       "dich an Sternenlich erinnert. "
-       "Es is ein Raetsel. "]
-      [:div.absolute
-       {:style {:color "#6da2bc"
-                :text-align :center
-                :margin-top "1vw"
-                :border-color "#feb48f"
-                :border-style "double"
-                :border-width "10px"}}
-       [:p
-        {:style {:margin "10vw"
-                 :font-size "4vw"
-                 :border "10px"}}
-        "Sprich Kind und tritt ein"]
-       [:div
-        [answer-input input]
-        [:button.btn
-         {:style
-          {:margin "0.8vw"
-           :width "4vw"
-           :color "#F689FF"
-           :background-color "#2e2d35"}
-          :on-click (fn
-                      [_]
-                      (rf/dispatch [::submit]))}
-         "submit"]]]]]))
 
 (rf/reg-sub
  ::counter
@@ -98,4 +98,9 @@
 
 (comment
   @re-frame.db/app-db
+  (rf/dispatch [::submit])
+  (->  (. js/document querySelector ":root" ) )
+
+  (set! (..  (. js/document querySelector ":root") -style -fontSize) )
+
   (swap! re-frame.db/app-db assoc ::ws/page :page/door))

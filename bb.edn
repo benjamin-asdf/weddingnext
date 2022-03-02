@@ -1,4 +1,6 @@
-{:tasks {clean (shell "npm" "run" "clean")
+{:tasks {:init
+         (def url "https://benjamin-asdf.github.io")
+         clean (shell "npm" "run" "clean")
          build-1 {:depends [clean]
                   :task (shell "npm" "run" "release")}
          build {:depends [build-1]
@@ -26,5 +28,4 @@
                         "master:gh-pages")}
          build-deploy {:depends [build deploy]}
          browse (shell
-                 "xdg-open"
-                 "https://benjamin-asdf.github.io")}}
+                 "xdg-open" url)}}

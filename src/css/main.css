@@ -14,7 +14,7 @@ body {
 
 @layer components {
     .btn {
-        @apply ly bg-amber-50 font-bold px-3 py-0.5 rounded text-center text-black;
+        @apply bg-amber-50 font-bold px-3 py-0.5 rounded text-center text-black;
     }
 }
 

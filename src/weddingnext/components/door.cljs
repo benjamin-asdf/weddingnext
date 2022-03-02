@@ -41,10 +41,12 @@
   []
   (let [input @(rf/subscribe [::answer])]
     [:div
-     [:div.faceRight.face {:id ::face}
-      [:img {:src (first (::assets/faces assets))}]
-      ]
-     ])
+     [:div.faceRight.face
+      {:id ::face}
+      [:img
+       {:src (first (::assets/faces assets))}]
+      ]])
+
     ;; [:div.ball
     ;;  {:id "foo"}]
     ;; [:h1.w-30
@@ -94,16 +96,36 @@
 (comment
   @re-frame.db/app-db
   (rf/dispatch [::submit])
-  (->  (. js/document querySelector ":root" ) )
-
-  (set! (..  (. js/document querySelector ":root") -style -fontSize) )
-
-  (swap! re-frame.db/app-db assoc ::ws/page :page/door)
-  (reset! re-frame.db/app-db weddingnext.db/init-db)
+  (->
+   (.
+    js/document
+    querySelector
+    ":root"))
+  (set!
+   (..
+    (.
+     js/document
+     querySelector
+     ":root")
+    -style
+    -fontSize))
+  (swap!
+   re-frame.db/app-db
+   assoc
+   ::ws/page
+   :page/door)
+  (reset!
+   re-frame.db/app-db
+   weddingnext.db/init-db)
   (. js/document getElement)
-
-  (set! (.. (.getElementById js/document "foo") -style -transform) "100px")
-
+  (set!
+   (..
+    (.getElementById
+     js/document
+     "foo")
+    -style
+    -transform)
+   "100px")
   (set!
    (..
     (.getElementById
@@ -112,18 +134,24 @@
     -style
     -transform)
    "translateX(500px)")
-  (.-id (js/document.getElementById (name ::ball-container)))
-
-
-  (let [container (.getElementById js/document (name ::ball-container))
-        wrap (js/document.createElement "div")
-        ball (js/document.createElement "div")
+  (.-id
+   (js/document.getElementById
+    (name ::ball-container)))
+  (let [container (.getElementById
+                   js/document
+                   (name ::ball-container))
+        wrap (js/document.createElement
+              "div")
+        ball (js/document.createElement
+              "div")
         x (rand-int 500)
         y (rand-int 500)]
     ;; (set! (.-className wrap) "ballwrap")
     (.appendChild wrap ball)
     (.appendChild container wrap)
-    (set! (.-className wrap) "slideInRight face")
+    (set!
+     (.-className wrap)
+     "slideInRight face")
     ;; (set! (.-className ball) "ball")
     ;; (set! (.. wrap -style -transform)
     ;;       (str "translateX(" x "px)"))
@@ -135,33 +163,25 @@
     ;;       (str "translateY(" y "px)"))
     ;; (set! (.. wrap -style -transform)
     ;;       (str "translateX(" (rand-int 500) "px)"))
-
     )
-
-
-
-(set!
- (..
-  (.getElementById
-   js/document
-   (name ::face))
-  -style
-  -transform)
- ;; "translate3d(100%, 0, 0)"
- "translate3d(0, 0, 0)"
- ;; "translateX(-19px)"
- )
-(set!
- (..
-  (.getElementById
-   js/document
-   (name ::face))
-  -style -transform)
- ;; "translate3d(100%, 0, 0)"
- ;; "translate3d(0, 0, 0)"
- "translateX(-600px)"
- )
-
-
-
-  )
+  (set!
+   (..
+    (.getElementById
+     js/document
+     (name ::face))
+    -style
+    -transform)
+   ;; "translate3d(100%, 0, 0)"
+   "translate3d(0, 0, 0)"
+   ;; "translateX(-19px)"
+   )
+  (set!
+   (..
+    (.getElementById
+     js/document
+     (name ::face))
+    -style
+    -transform)
+   ;; "translate3d(100%, 0, 0)"
+   ;; "translate3d(0, 0, 0)"
+   "translateX(-600px)"))

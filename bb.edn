@@ -1,5 +1,6 @@
-{:tasks {:init
-         (def url "https://benjamin-asdf.github.io")
+{:tasks {:init (def
+                 url
+                 "https://benjamin-asdf.github.io/weddingnext")
          clean (shell "npm" "run" "clean")
          build-1 {:depends [clean]
                   :task (shell "npm" "run" "release")}
@@ -24,8 +25,12 @@
                         "git"
                         "push"
                         "--force"
-                        "git@github.com:benjamin-asdf/benjamin-asdf.github.io.git"
+                        "git@github.com:benjamin-asdf/weddingnext.git"
                         "master:gh-pages")}
          build-deploy {:depends [build deploy]}
-         browse (shell
-                 "xdg-open" url)}}
+         browse-qr-code (shell
+                         "xdg-open"
+                         (str
+                          "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="
+                          url))
+         browse (shell "xdg-open" url)}}

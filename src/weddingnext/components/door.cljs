@@ -2,7 +2,7 @@
     weddingnext.components.door
     (:require
      [weddingnext.specs :as ws]
-     [weddingnext.assets.assets :as assets :refer [assets]]
+
      [weddingnext.components.input-field-with-btn :refer [input-field-and-btn]]
      [re-frame.core :as rf]))
 
@@ -40,45 +40,35 @@
   door
   []
   (let [input @(rf/subscribe [::answer])]
-    [:div
-     [:div.faceRight.face
-      {:id ::face}
-      [:img
-       {:src (first (::assets/faces assets))}]
-      ]])
-
-    ;; [:div.ball
-    ;;  {:id "foo"}]
-    ;; [:h1.w-30
-    ;;  "Willkommen"
-    ;;  [:div
-    ;;   [:p.mb-4
-    ;;    "Dein magischer Stein zeigt dir eine maechtige Tuere. "
-    ;;    "Im Stein sind Buchstaben eingraviert, deren strahlen "
-    ;;    "dich an Sternenlich erinnert. "
-    ;;    "Es is ein Raetsel. "]
-    ;;   [:div.mt-1
-    ;;    {:class "space-y-2 m-0.5"
-    ;;     :style {:color "#6da2bc"
-    ;;             :text-align :center
-    ;;             :margin-top "1vw"
-    ;;             :border-color "#feb48f"
-    ;;             :border-style "double"
-    ;;             :border-width "10px"}}
-    ;;    [:p.text-2xl
-    ;;     {:class "mt-3"}
-    ;;     "Sprich Kind und tritt ein"]
-    ;;    (input-field-and-btn
-    ;;     input
-    ;;     {:on-change (fn
-    ;;                   [e]
-    ;;                   (let [answer (-> e .-target .-value)]
-    ;;                     (rf/dispatch
-    ;;                      [::update-answer answer])))
-    ;;      :on-click (fn
-    ;;                  [_]
-    ;;                  (rf/dispatch [::submit]))})]]]
-  )
+    [:h1.w-30
+     "Willkommen"
+     [:div
+      [:p.mb-4
+       "Dein magischer Stein zeigt dir eine maechtige Tuere. "
+       "Im Stein sind Buchstaben eingraviert, deren strahlen "
+       "dich an Sternenlich erinnert. "
+       "Es is ein Raetsel. "]
+      [:div.mt-1
+       {:class "space-y-2 m-0.5"
+        :style {:color "#6da2bc"
+                :text-align :center
+                :margin-top "1vw"
+                :border-color "#feb48f"
+                :border-style "double"
+                :border-width "10px"}}
+       [:p.text-2xl
+        {:class "mt-3"}
+        "Sprich Kind und tritt ein"]
+       (input-field-and-btn
+        input
+        {:on-change (fn
+                      [e]
+                      (let [answer (-> e .-target .-value)]
+                        (rf/dispatch
+                         [::update-answer answer])))
+         :on-click (fn
+                     [_]
+                     (rf/dispatch [::submit]))})]]]))
 
 (rf/reg-event-db
  ::submit

@@ -4,6 +4,7 @@
    [weddingnext.db]
    [re-frame.core :as rf]
    [weddingnext.specs :as ws]
+   [weddingnext.assets.assets :as assets :refer [assets]]
    [weddingnext.animations.faces :as faces]
    ;; components
    [weddingnext.components.lake :refer [lake]]
@@ -13,10 +14,16 @@
 
 (rf/reg-sub ::ws/page ::ws/page)
 
-(defn weddingnext []
+(defn
+  weddingnext
+  []
   (let [page @(rf/subscribe [::ws/page])]
     [:main
-     ;; [counter]
+     [:div
+      [:div.faceRight.face
+       {:id ::face}
+       [:img
+        {:src (first (::assets/faces assets))}]]]
      ({:page/door [door]
        :page/lake [lake]
        :page/lake-result [lake-result]}

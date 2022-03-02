@@ -23,6 +23,10 @@
    "click"
    @click-listener))
 
+(defn face []
+
+  )
+
 (rf/reg-fx
  ::click
  (fn [value]
@@ -32,6 +36,7 @@
 (rf/reg-event-fx
  ::click
  (fn [{:keys [event]}]
+
    {::make-face
     (peek event)}))
 
@@ -42,18 +47,12 @@
    js/document
    "face"))
 
-(def position
-  {:right
-   {:x 600
-    :y 500}
-   :left
-   {:x -100
-    :y 500}
-   :top
-   {:x 200}
-
-   }
-  )
+(def
+  position
+  {:right {:x 600 :y 500}
+   :left {:x -100 :y 500}
+   :top {:x 150 :y -100}
+   :bottom {:x 150 :y 800}})
 
 (defn
   reset-face
@@ -75,7 +74,6 @@
     -style
     -transform)
    "translateY(+2000%)")
-
   (set!
    (..
     (get-face)
@@ -86,15 +84,17 @@
 
   )
 
-
 (rf/reg-fx
  ::make-face
  (fn
    [[x y]]
    (let [face (get-face)]
+     ;; (set!
+     ;;  (.. face -style -transform)
+     ;;  "translateX(-600px)")
      (set!
       (.. face -style -transform)
-      "translateX(-600px)")
+      "translateY(+300px)")
      (set!
       (.. face -style -visibility)
       "visible")
@@ -106,7 +106,6 @@
      ;;   ;; (let [face (get-face)]
      ;;   ;;   (set! (.. face -style -visibility) "hidden"))
      ;;   )
-
 
      )))
 

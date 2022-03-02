@@ -46,22 +46,19 @@ body {
 
 
 .face {
-  /* border-radius: 25px; */
   width: 100px;
   height: 100px;
-  /* background: cyan; */
   position: absolute;
-  transition: transform 1s;
-  /* visibility: hidden; */
+  transition: transform 0.5s;
+  transition-timing-function: ease-in-out;
   visibility: visible;
 }
 
 .faceRight {
   /* top: 200px; */
   /* left: 600px; */
-  top: 0px;
-  left: 45%
-	/* 180px; */
+  top: 800px;
+  left: 150px;
 }
 
 

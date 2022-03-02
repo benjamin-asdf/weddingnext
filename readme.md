@@ -7,6 +7,12 @@ copied from clojure script template.
 
 # Development
 
+once
+
+```shell
+npm install
+```
+
 run `bb tasks` for a list of tasks.
 
 bb dev-shadow + bb dev-tailwind for developing.
@@ -16,6 +22,8 @@ Browse to http://localhost:8000.
 
 # ClojureScript Template
 
+Thanks to clojurescript template
+
 What's inside:
 
 - shadow-cljs
@@ -23,13 +31,6 @@ What's inside:
 - re-frame + tools for development/debugging
 - Tailwind CSS
 - Very basic PWA setup (uncomment the code in `index.html` to use manifest and ServiceWorker)
-
-
-## Installation
-
-```shell
-npm install
-```
 
 ## Dev Tools
 To show re-frame-10x panel press <kbd>Ctrl</kbd>+<kbd>H</kbd>.

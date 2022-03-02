@@ -1,6 +1,8 @@
 {:tasks {:init (def
                  url
                  "https://benjamin-asdf.github.io/weddingnext")
+         dev-shadow (shell "npm" "run" "dev")
+         dev-tailwind (shell "npm" "run" "twdev")
          clean (shell "npm" "run" "clean")
          build-1 {:depends [clean]
                   :task (shell "npm" "run" "release")}

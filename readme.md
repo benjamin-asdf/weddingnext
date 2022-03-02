@@ -5,6 +5,14 @@ I made this as weddinggift to my cousin.
 
 copied from clojure script template.
 
+# Development
+
+run `bb tasks` for a list of tasks.
+
+bb dev-shadow + bb dev-tailwind for developing.
+Connect with favorite repl client to localhost:3333.
+Browse to http://localhost:8000.
+
 
 # ClojureScript Template
 
@@ -18,14 +26,9 @@ What's inside:
 
 
 ## Installation
+
 ```shell
 npm install
-
-# run shadow-cljs
-npm run dev
-
-# run tailwind in a separate terminal
-npm run twdev
 ```
 
 ## Dev Tools

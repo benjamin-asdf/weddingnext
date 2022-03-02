@@ -1,13 +1,14 @@
 (ns
     weddingnext.components.elements
     (:require
+     [weddingnext.assets.colors :as colors]
      [re-frame.core :as rf]))
 
 (defn
   devider
   []
   [:hr.m-2
-   {:style {:color "#feb48f"
+   {:style {:color colors/hit-pink
             :border-bottom "1px"
             :border-top "2px solid"}}])
 

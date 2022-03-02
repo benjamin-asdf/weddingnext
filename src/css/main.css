@@ -51,7 +51,7 @@ body {
   position: absolute;
   transition: transform 0.5s;
   transition-timing-function: ease-in-out;
-  visibility: visible;
+  visibility: hidden;
 }
 
 .faceRight {

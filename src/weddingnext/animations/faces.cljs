@@ -79,7 +79,9 @@
     (get-face)
     -style
     -visibility)
-   "visible" )
+   "hidden"
+   ;; "visible"
+   )
 
 
   )

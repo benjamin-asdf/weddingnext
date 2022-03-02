@@ -4,6 +4,7 @@
    [weddingnext.db]
    [re-frame.core :as rf]
    [weddingnext.specs :as ws]
+   [weddingnext.animations.faces :as faces]
    ;; components
    [weddingnext.components.lake :refer [lake]]
    [weddingnext.components.door :refer [door]]
@@ -23,6 +24,7 @@
 
 ;; start is called by init and after code reloading finishes
 (defn ^:dev/after-load start []
+  (faces/mount)
   (rdom/render [weddingnext]
                (.getElementById js/document "weddingnext")))
 
@@ -36,4 +38,5 @@
 
 ; this is called before any code is reloaded
 (defn ^:dev/before-load stop []
+  (faces/unmount)
   (js/console.log "stop"))

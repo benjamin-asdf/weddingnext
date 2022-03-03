@@ -1,29 +1,40 @@
 (ns
     weddingnext.components.lake-result
-    (:require
-     [re-frame.core :as rf]
-     [weddingnext.specs :as ws]
-     [weddingnext.components.elements :as elms]
-     [weddingnext.assets.colors :as colors]
-     [weddingnext.components.input-field-with-btn
-      :refer
-      [input-field-and-btn]]))
+  (:require
+   [re-frame.core :as rf]
+   [weddingnext.specs :as ws]
+   [weddingnext.components.elements :as elms]
+   [weddingnext.assets.colors :as colors]))
 
-(defn lake-result []
-  [:p "Die Antwort ist"]
-  [:div.w-30.m-2.p-2
-   [:p
-    "Die Antwort ist 29."]
-   ;; [:p.text-xl
-   ;;  ;; {:style {:color colors/heliotrope}}
-   ;;  " 29 "]
-   [:p
-    "ein Tag bevor der See komplett bedeckt ist."]
-   [:div.pt-2
-    [elms/devider]]
-   [:pre.mb-2
-    {:style {:font-size "0.45rem"}}
-    "
+(rf/reg-sub
+ :weddingnext.components.lake/correct?
+ (fn [db]
+   (:weddingnext.components.lake/correct? db)))
+
+(defn
+  lake-result
+  []
+  (let [correct? @(rf/subscribe
+                   [:weddingnext.components.lake/correct?])]
+    [:div
+     [:div.w-30.m-2.p-2
+      (if
+          correct?
+          [:div
+           {:style {:color colors/mint-green}}
+           "29."]
+          [:p
+           "Die Antwort ist "
+           [:p
+            {:style {:color colors/heliotrope}}
+            "29."]])
+      [:p
+       "Ein Tag bevor der See komplett bedeckt ist."]
+      [:div.pt-2 [elms/devider]]
+      [:div.mb-2
+       [:pre
+        {:style {:font-size "0.45rem"}}
+        "
 🞌
 🞌
 🞌
@@ -51,7 +62,25 @@
 ■ 3
 ■■ 6
 ■■■■■ 12
-■■■■■■■■■■ 25
-■■■■■■■■■■■■■■■■■■■■ 50
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 100 "]
-   [:btn.btn.mr-4 "Krass"]])
+■■■■■■■■■■ 25"]
+       [:pre
+        {:style {:font-size "0.45rem"
+                 :color (if
+                            correct?
+                            colors/mint-green
+                            colors/heliotrope)}}
+        "■■■■■■■■■■■■■■■■■■■■ 50"]
+       [:pre
+        {:style {:font-size "0.45rem"}}
+        "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 100 "]]
+      [:btn.btn.mr-4 "krass"]]]))
+
+(comment
+  (reset!
+   re-frame.db/app-db
+   (assoc
+    weddingnext.db/init-db
+    :weddingnext.components.lake/correct?
+    true
+    ::ws/page
+    :page/lake-result)))

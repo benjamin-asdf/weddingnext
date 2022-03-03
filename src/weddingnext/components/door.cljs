@@ -58,7 +58,7 @@
        [:p.text-2xl
         {:class "mt-3"}
         "Sprich Kind und tritt ein"]
-       (input-field-and-btn
+       [input-field-and-btn
         input
         {:on-change (fn
                       [e]
@@ -67,7 +67,7 @@
                          [::update-answer answer])))
          :on-click (fn
                      [_]
-                     (rf/dispatch [::submit]))})]]]))
+                     (rf/dispatch [::submit]))}]]]]))
 
 (rf/reg-event-db
  ::submit

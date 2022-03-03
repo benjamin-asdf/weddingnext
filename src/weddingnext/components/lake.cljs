@@ -35,15 +35,15 @@
     [:div.w-30.p-1
      [:p
       (str
-       "Du kommst zu einem See. Do hoerst sanftes Plaetschern."
+       "Du kommst zu einem See. Du hörst sanftes Plätschern."
        " Eine Seerose "
-       "schwimmt auf der Oberflaeche. "
+       "schwimmt auf der Oberfläche. "
        "Du stells dir die Frage")]
      [elms/devider]
      [:p
-      "Wenn sich die Flaeche der Seerosen jeden Tag verdoppelt "
+      "Wenn sich die Fläche der Seerosen jeden Tag verdoppelt "
       "und nach 30 Tagen der See komplett bedeckt ist, "
-      "an welchem Tag ist die Healfte des Sees bedeckt? "]
+      "an welchem Tag ist die Hälfte des Sees bedeckt? "]
      [elms/devider]
      [:pre.font-monospace.mt-10.mb-10
       {:style {:font-size "0.1rem"

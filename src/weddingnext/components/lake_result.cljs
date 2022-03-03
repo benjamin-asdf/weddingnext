@@ -2,17 +2,20 @@
     weddingnext.components.lake-result
   (:require
    [re-frame.core :as rf]
+   [reagent.core :as r]
    [weddingnext.specs :as ws]
    [weddingnext.components.elements :as elms]
    [weddingnext.assets.colors :as colors]))
 
 (rf/reg-sub
  :weddingnext.components.lake/correct?
- (fn [db]
-   (:weddingnext.components.lake/correct? db)))
+ (fn
+   [db]
+   (:weddingnext.components.lake/correct?
+    db)))
 
 (defn
-  lake-result
+  lake-result*
   []
   (let [correct? @(rf/subscribe
                    [:weddingnext.components.lake/correct?])]
@@ -74,8 +77,18 @@
         {:style {:font-size "0.45rem"}}
         "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 100 "]]
       [:btn.btn.mr-4 "krass"]]]))
+(defn
+  lake-result
+  []
+  (r/create-class
+   {:component-did-mount
+    (fn
+      []
+      (js/window.scrollTo 0 0))
+    :reagent-render lake-result*}))
 
 (comment
+  10
   (reset!
    re-frame.db/app-db
    (assoc

@@ -14,12 +14,15 @@
 
 (rf/reg-sub ::ws/page ::ws/page)
 
+
 (defn
   weddingnext
   []
   (let [page @(rf/subscribe [::ws/page])]
     [:main
      [:div
+      ;; [:div.faceContainer
+      ;;  [faces/face]]
       [:div.faceRight.face
        {:id ::face}
        [:img

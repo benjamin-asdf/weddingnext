@@ -45,7 +45,7 @@
       [:p.mb-4
        "Dein magischer Stein zeigt dir eine maechtige Tuere. "
        "Im Stein sind Buchstaben eingraviert, deren strahlen "
-       "dich an Sternenlich erinnert. "
+       "dich an Sternenlicht erinnert. "
        "Es is ein Raetsel. "]
       [:div.mt-1
        {:class "space-y-2 m-0.5"

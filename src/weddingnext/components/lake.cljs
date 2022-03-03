@@ -34,11 +34,10 @@
   (let [answer @(rf/subscribe [::answer])]
     [:div.w-30.p-1
      [:p
-      (str
-       "Du kommst zu einem See. Du hörst sanftes Plätschern."
-       " Eine Seerose "
-       "schwimmt auf der Oberfläche. "
-       "Du stells dir die Frage")]
+      "Du kommst zu einem See. Du hörst sanftes Plätschern."
+      " Eine Seerose "
+      "schwimmt auf der Oberfläche. "
+      "Du stells dir die Frage"]
      [elms/devider]
      [:p
       "Wenn sich die Fläche der Seerosen jeden Tag verdoppelt "

@@ -75,7 +75,10 @@
        (rf/assoc-coeffect
         context
         ::say-num?
-        (when answer (js/isNaN answer)))))))
+        (or (nil? answer)
+            (not answer)
+            (zero? (count answer))
+            (js/isNaN answer)))))))
 (def
   classify-answer
   (rf/->interceptor

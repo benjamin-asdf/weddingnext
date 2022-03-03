@@ -2,7 +2,6 @@
     weddingnext.components.door
     (:require
      [weddingnext.specs :as ws]
-
      [weddingnext.components.input-field-with-btn :refer [input-field-and-btn]]
      [re-frame.core :as rf]))
 

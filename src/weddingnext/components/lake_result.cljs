@@ -76,7 +76,10 @@
        [:pre
         {:style {:font-size "0.45rem"}}
         "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 100 "]]
-      [:btn.btn.mr-4 "krass"]]]))
+      [:btn.btn.mr-4
+       {:on-click
+        (fn [] (rf/dispatch [::click]))}
+       "krass"]]]))
 (defn
   lake-result
   []
@@ -86,6 +89,11 @@
       []
       (js/window.scrollTo 0 0))
     :reagent-render lake-result*}))
+
+(rf/reg-event-db
+ ::click
+ (fn [db _]
+   (assoc db ::ws/page :page/bakers)))
 
 (comment
   10

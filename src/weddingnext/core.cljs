@@ -7,6 +7,7 @@
    [weddingnext.assets.assets :as assets :refer [assets]]
    [weddingnext.animations.faces :as faces]
    ;; components
+   [weddingnext.components.bakers :refer [bakers]]
    [weddingnext.components.lake :refer [lake]]
    [weddingnext.components.door :refer [door]]
    [weddingnext.components.lake-result :refer [lake-result]]
@@ -20,17 +21,19 @@
   []
   (let [page @(rf/subscribe [::ws/page])]
     [:main
-     [:div
-      [faces/face]
-      ;; [:div.faceRight.face
-      ;;  {:id ::face}
-      ;;  [:img
-      ;;   {:src (first (::assets/faces assets))}]]
-      ]
+     ;; [:div
+     ;;  [faces/face]
+     ;;  ;; [:div.faceRight.face
+     ;;  ;;  {:id ::face}
+     ;;  ;;  [:img
+     ;;  ;;   {:src (first (::assets/faces assets))}]]
+     ;;  ]
      ({:page/door [door]
        :page/lake [lake]
+       :page/bakers [bakers]
        :page/lake-result [lake-result]}
-      page)]))
+      page)
+     ]))
 
 ;; start is called by init and after code reloading finishes
 (defn ^:dev/after-load start []

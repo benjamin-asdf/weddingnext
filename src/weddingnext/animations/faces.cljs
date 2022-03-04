@@ -8,6 +8,22 @@
 (defonce eventd (atom nil))
 (defonce face-nodes (atom #{}))
 
+(def
+  positions
+  "Default positions in %."
+  {:right {:x 600 :y 500}
+   :left {:x -100 :y 500}
+   :top {:x 130 :y -200}
+   :bottom {:x 150 :y 800}})
+
+(def
+  move-in
+  "Move into view %"
+  {:top {:x 130 :y -200}})
+
+(defn get-face []
+    (first @face-nodes))
+
 (defn mount []
   (let [listener
         (fn [ev]
@@ -55,11 +71,11 @@
     (fn []
       [:div.face {:id "my-face"}])}))
 
+
 (rf/reg-fx
  ::click
  (fn [value]
    {::make-face (second value)}))
-
 
 ;; (defn
 ;;   reset-face
@@ -75,20 +91,6 @@
  (fn [{:keys [event]}]
    {::make-face
     (peek event)}))
-
-(defn
-  get-face
-  []
-  (.getElementById
-   js/document
-   "face"))
-
-(def
-  position
-  {:right {:x 600 :y 500}
-   :left {:x -100 :y 500}
-   :top {:x 150 :y -100}
-   :bottom {:x 150 :y 800}})
 
 (defn
   wiggle
@@ -108,20 +110,63 @@
       (a/<! (a/timeout 200))
       (wiggle-back))))
 
-(defn reset-face [face]
+(defn
+  reset-face
+  [face position]
+  (let [{:keys [x y]} (position positions)]
+    (set!
+     (.. face -style -visibility)
+     "hidden")
+    (set!
+     (.. face -style -transition)
+     "transform 0.5s")
+    (set!
+     (.. face -style -transform)
+     "rotateZ(0deg)")
+    (set!
+     (.. face -style -transform)
+     (str "translateX(" x "%)"))
+    (set!
+     (.. face -style -transform)
+     (str "translateY(" y "%)"))
+    (set!
+     (.. face -style -transform)
+     "translateY(0px)")))
+
+(defn
+  move-anim-1
+  [face from]
+  (reset-face face from)
+  (set!
+   (.. face -style -visibility)
+   "hidden")
+
+
+
   )
 
 (comment
-  (reset-face (get-face))
 
   (set!
-   (..
-    (get-face)
-    -style
-    -visibility)
-   "hidden"
-   ;; "visible"
-   )
+   (.. (get-face) -style -transform)
+   "translateY(0px)")
+
+  (set!
+   (.. (get-face) -style -transform)
+   "translateY(+100%)")
+  (set!
+   (.. (get-face) -style -transform)
+   "translateY(0px)")
+
+  (set!
+   (.. (get-face) -style -transform)
+   "translateX(+130%)")
+  (set!
+   (.. (get-face) -style -transform)
+   "translateY(-200%)")
+
+   (reset-face (get-face) :top)
+
   (set!
    (..
     (get-face)
@@ -183,11 +228,7 @@
   (set! (.-color (.-style (first @face-nodes))) "yellow")
 
   (r/children (first @face-nodes))
-  (set!
-   (..
-    (rf/console :log (first @face-nodes))
-    -style
-    -border-radius "25px"))
+
 
   (doseq [face @face-nodes]
     (set! (.. face -style -top) "100px")
@@ -198,17 +239,18 @@
  ::make-face
  (fn
    [[x y]]
-   (let [face (get-face)]
-     ;; (set!
-     ;;  (.. face -style -transform)
-     ;;  "translateX(-600px)")
-     (set!
-      (.. face -style -transform)
-      "translateY(+300px)")
+   ;; (let [face (get-face)]
+   ;;   ;; (set!
+   ;;   ;;  (.. face -style -transform)
+   ;;   ;;  "translateX(-600px)")
+   ;;   (set!
+   ;;    (.. face -style -transform)
+   ;;    "translateY(+300px)")
 
-     (set!
-      (.. face -style -visibility)
-      "visible"))))
+   ;;   (set!
+   ;;    (.. face -style -visibility)
+   ;;    "visible"))
+   ))
 
 ;; make it come in from 1 side
 ;; rand pos

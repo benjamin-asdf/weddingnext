@@ -97,10 +97,25 @@
   (rf/dispatch [::submit "fo"])
   (require '[re-frame.db])
   (require '[weddingnext.db])
+  (rf/dispatch [::submit])
   (::answer @re-frame.db/app-db)
-  (reset! re-frame.db/app-db weddingnext.db/init-db)
-  (swap! re-frame.db/app-db assoc ::ws/page :page/lake)
+  (reset!
+   re-frame.db/app-db
+   weddingnext.db/init-db)
+  (swap!
+   re-frame.db/app-db
+   assoc
+   ::ws/page
+   :page/lake)
   (try
     (.parseInt "f")
     (catch nil))
-  (rf/console :log (.parseInt "f")))
+  (rf/console
+   :log
+   (.parseInt "f"))
+  (get
+   (group-by
+    :group
+    [{:group 1 :fo "0"}
+     {:group 2 :fo "1"}])
+   1))

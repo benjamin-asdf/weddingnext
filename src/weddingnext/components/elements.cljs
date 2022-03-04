@@ -17,5 +17,14 @@
 (defn default-text [& hiccup]
   (into [:div.w-30.p-1] hiccup))
 
+(defn
+  button
+  [on-click]
+  [:button.btn.p-1
+   {:style {:color colors/heliotrope
+            :background-color colors/woodsmoke-tint-1}
+    :on-click on-click}
+   [:p "ok"]])
+
 (comment
   (default-text [:p "foooo"]))

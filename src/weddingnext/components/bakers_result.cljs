@@ -12,6 +12,7 @@
  ::bakers/correct?
  ::bakers/correct?)
 
+
 (defn
   bakers-result
   []
@@ -20,7 +21,13 @@
      (if correct?
        "Richtig! - "
        "Die richtige Antwort is 90. ")
-     "Jeder Bäcker braucht 90 minuten fuer eine Torte."]))
+     "Jeder Bäcker braucht 90 minuten fuer eine Torte."
+     [:div.m10.pl-4 [elms/button]]
+     ;; [:button
+     ;;  {:on-click
+     ;;   (fn [] (js/alert "foo"))}
+     ;;  "Weiter"]
+     ]))
 
 (comment
   (reset!

@@ -24,6 +24,8 @@
   [answer]
   (#{"90" "neunzig"} (u/s-sanitize answer)))
 
+
+
 (defn
   bakers
   []
@@ -35,7 +37,7 @@
       "überall türmen sich die Mehlsäcke, Nüsse und karamellisierte Früchte"]
      [elms/devider]
      [:p
-      "Neun Bäcker brauchen 90 Minuten für neun Hochzeitstorten."
+      "Neun Bäcker brauchen 90 Minuten für neun Hochzeitstorten. "
       "Wie lange dauert es für 24 Bäcker, 24 Torten zu backen?"]
      [:div.p-0.ml-5
       (input-field-and-btn

@@ -8,7 +8,7 @@
 (defn
   correct?
   [answer]
-  (#{"merle" "katja"}
+  (#{"merle" "katja" "kind"}
    (.trim
     (.toLowerCase
      answer))))

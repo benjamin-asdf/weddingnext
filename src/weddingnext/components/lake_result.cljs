@@ -30,9 +30,9 @@
            "Die Antwort ist "
            [:p
             {:style {:color colors/heliotrope}}
-            "29."]])
+            "29: "]])
       [:p
-       "Ein Tag bevor der See komplett bedeckt ist."]
+       "ein Tag, bevor der See komplett bedeckt ist."]
       [:div.pt-2 [elms/devider]]
       [:div.mb-2
        [:pre
@@ -76,7 +76,7 @@
        [:pre
         {:style {:font-size "0.45rem"}}
         "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 100 "]]
-      [:btn.btn.mr-4
+      [:button..btn.mr-4
        {:on-click
         (fn [] (rf/dispatch [::click]))}
        "krass"]]]))

@@ -6,19 +6,17 @@
       [slurp]])
     (:require
      [re-frame.core :as rf]
+     [weddingnext.say-num :as say-num]
+     [weddingnext.utils :as u]
      [weddingnext.specs :as ws]
      [weddingnext.components.elements :as elms]
      [weddingnext.components.input-field-with-btn
       :refer
       [input-field-and-btn]]))
-
-(defn sanitize [s]
-  (.. s toLowerCase trim))
-
 (defn
   correct?
   [answer]
-  (#{"29"} (sanitize answer)))
+  (#{"29"} (u/s-sanitize answer)))
 
 (def asci
   (slurp "public/art/lake"))
@@ -37,7 +35,7 @@
       "Du kommst zu einem See. Du hörst sanftes Plätschern."
       " Eine Seerose "
       "schwimmt auf der Oberfläche. "
-      "Du stells dir die Frage"]
+      "Du stellst dir die Frage:"]
      [elms/devider]
      [:p
       "Wenn sich die Fläche der Seerosen jeden Tag verdoppelt "
@@ -64,40 +62,24 @@
    (assoc db ::answer s)))
 
 (def
-  say-num-interceptor
-  (rf/->interceptor
-   :id ::say-num?
-   :before
-   (fn
-     [context]
-     (let [answer (::answer (rf/get-coeffect context :db))]
-       (rf/assoc-coeffect
-        context
-        ::say-num?
-        (or (nil? answer)
-            (not answer)
-            (zero? (count answer))
-            (js/isNaN answer)))))))
-(def
   classify-answer
-  (rf/->interceptor
-   :id ::classify-answer
-   :before
-   (fn
-     [context]
-     (let [db (rf/get-coeffect context :db)
-           answer (::answer db)]
-       (cond->
-           context
-           (not (rf/get-coeffect context ::say-num?))
-           (rf/assoc-coeffect
-            ::correct?
-            (correct? answer)))))))
+  (say-num/classifier
+   ::classify-answer
+   ::answer
+   ::correct?
+   correct?))
+
+(def
+  interceptor
+  (say-num/say-num-interceptor
+   (fn [db] (::answer db))))
 
 (rf/reg-event-fx
  ::submit
- [say-num-interceptor classify-answer]
- (fn [{:keys [db ::correct? ::say-num?]} _]
+ [interceptor
+  classify-answer]
+ (fn
+   [{:keys [db ::correct? ::say-num/say-num?]} _]
    (let [db (cond->
                 db
                 (not say-num?)
@@ -109,15 +91,12 @@
      (cond->
          {:db db}
          say-num?
-         (assoc ::say-num say-num?)))))
-
-(rf/reg-fx
- ::say-num
- (fn [_]
-   (js/alert "Sage eine Zahl.")))
+         (assoc ::say-num/say-num? say-num?)))))
 
 (comment
   (rf/dispatch [::submit "fo"])
+  (require '[re-frame.db])
+  (require '[weddingnext.db])
   (::answer @re-frame.db/app-db)
   (reset! re-frame.db/app-db weddingnext.db/init-db)
   (swap! re-frame.db/app-db assoc ::ws/page :page/lake)

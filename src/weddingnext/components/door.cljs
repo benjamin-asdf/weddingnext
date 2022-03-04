@@ -40,13 +40,14 @@
   []
   (let [input @(rf/subscribe [::answer])]
     [:h1.w-30
-     "Willkommen"
+     "Willkommen!"
      [:div
       [:p.mb-4
-       "Dein magischer Stein zeigt dir eine maechtige Tuere. "
-       "Im Stein sind Buchstaben eingraviert, deren strahlen "
+       "Dein magischer Stein zeigt dir eine mächtige Tuere. "
+       "Im Stein sind Buchstaben eingraviert, deren Strahlen "
        "dich an Sternenlicht erinnert. "
-       "Es is ein Raetsel. "]
+       ""
+       "Es ist ein Rätsel. "]
       [:div.mt-1
        {:class "space-y-2 m-0.5"
         :style {:color "#6da2bc"

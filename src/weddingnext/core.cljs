@@ -21,12 +21,12 @@
   (let [page @(rf/subscribe [::ws/page])]
     [:main
      [:div
-      ;; [:div.faceContainer
-      ;;  [faces/face]]
-      [:div.faceRight.face
-       {:id ::face}
-       [:img
-        {:src (first (::assets/faces assets))}]]]
+      [faces/face]
+      ;; [:div.faceRight.face
+      ;;  {:id ::face}
+      ;;  [:img
+      ;;   {:src (first (::assets/faces assets))}]]
+      ]
      ({:page/door [door]
        :page/lake [lake]
        :page/lake-result [lake-result]}

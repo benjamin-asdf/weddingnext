@@ -32,7 +32,7 @@ body {
   width: 50px;
   height: 50px;
   background: #c00;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   transition: transform 1s;
@@ -49,10 +49,19 @@ body {
   width: 100px;
   height: 100px;
   position: absolute;
+
   transition: transform 0.5s;
   transition-timing-function: ease-in-out;
-  visibility: hidden;
+  background: yellow;
+
+  /* visibility: hidden; */
 }
+
+/* .faceContainer { */
+/*   position: absolute; */
+/*   top: 50%; */
+/*   left: 50%; */
+/* } */
 
 .faceRight {
   /* top: 200px; */

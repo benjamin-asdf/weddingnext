@@ -47,6 +47,7 @@
             [::update-answer answer])))]
       "Minuten"
       [:button.btn.ml-5
+       ;; todo fix ui
        {:style elms/default-button-style
         :on-click
         (fn
@@ -71,7 +72,6 @@
   interceptor
   (say-num/say-num-interceptor
    (fn [db] (::answer db))))
-
 
 (rf/reg-event-fx
  ::submit

@@ -7,6 +7,8 @@
    [weddingnext.assets.assets :as assets :refer [assets]]
    [weddingnext.animations.faces :as faces]
    ;; components
+   [weddingnext.components.cake-result :refer [cake-result]]
+   [weddingnext.components.cake :refer [cake]]
    [weddingnext.components.bakers :refer [bakers]]
    [weddingnext.components.bakers-result :refer [bakers-result]]
    [weddingnext.components.lake :refer [lake]]
@@ -16,7 +18,6 @@
 
 (rf/reg-sub ::ws/page ::ws/page)
 
-
 (defn
   weddingnext
   []
@@ -25,7 +26,9 @@
      ({:page/door [door]
        :page/lake [lake]
        :page/bakers [bakers]
+       :page/cake [cake]
        :page/bakers-result [bakers-result]
+       :page/cake-result [cake-result]
        :page/lake-result [lake-result]}
       page)]))
 

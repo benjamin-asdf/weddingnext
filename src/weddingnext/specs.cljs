@@ -6,4 +6,6 @@
   #{:page/door :page/lake
     :page/lake-result :page/house
     :page/bakers-result
+    :page/cake-result
+    :page/cake
     :page/bakers})

@@ -39,9 +39,10 @@
      [context]
      (let [db (rf/get-coeffect context :db)
            answer (get-answer db)]
-       (rf/console :log (rf/get-coeffect
-         context
-         ::say-num?))
+       (rf/console :log
+                   (rf/get-coeffect
+                    context
+                    ::say-num?))
        (cond->
            context
            (not

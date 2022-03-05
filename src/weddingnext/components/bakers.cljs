@@ -3,6 +3,7 @@
     (:require
      [re-frame.core :as rf]
      [weddingnext.utils :as u]
+     [reagent.core :as r]
      [weddingnext.specs :as ws]
      [weddingnext.say-num
       :as
@@ -25,14 +26,14 @@
   (#{"90" "neunzig"} (u/s-sanitize answer)))
 
 (defn
-  bakers
+  bakers*
   []
   (let [answer @(rf/subscribe [::answer])]
     [:div.w-30.p-1
      [:p
-      "Nun bist du in einer Hochzeitsbäkerei. "
-      "Tüchtige Bäker*innen backen geschaeftig. "
-      "überall türmen sich die Mehlsäcke, Nüsse und karamellisierte Früchte"]
+      "Nun bist du in einer Hochzeitsbäckerei. "
+      "Tüchtige Bäcker*innen backen geschäftig. "
+      "Überall türmen sich die Mehlsäcke, Nüsse und karamellisierte Früchte."]
      [elms/devider]
      [:p
       "Neun Bäcker brauchen 90 Minuten für neun Hochzeitstorten. "
@@ -54,6 +55,16 @@
           [_]
           (rf/dispatch [::submit]))}
        "ok"]]]))
+
+(defn
+  bakers
+  []
+  (r/create-class
+   {:component-did-mount
+    (fn
+      []
+      (js/window.scrollTo 0 0))
+    :reagent-render bakers*}))
 
 (rf/reg-event-db
  ::update-answer

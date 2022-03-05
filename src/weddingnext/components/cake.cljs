@@ -72,7 +72,6 @@
             ::correct?
             ::say-num/say-num?]}
     _]
-   (rf/console :log "hi1")
    (let [db (cond->
                 db
                 (not say-num?)

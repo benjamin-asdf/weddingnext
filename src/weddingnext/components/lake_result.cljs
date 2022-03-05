@@ -25,14 +25,14 @@
           correct?
           [:div
            {:style {:color colors/mint-green}}
-           "29."]
+           "29!"]
           [:p
            "Die Antwort ist "
            [:p
             {:style {:color colors/heliotrope}}
             "29: "]])
       [:p
-       "ein Tag, bevor der See komplett bedeckt ist."]
+       " - ein Tag, bevor der See komplett bedeckt ist."]
       [:div.pt-2 [elms/devider]]
       [:div.mb-2
        [:pre
@@ -94,6 +94,7 @@
  ::click
  (fn [db _]
    (assoc db ::ws/page :page/bakers)))
+
 
 (comment
   10

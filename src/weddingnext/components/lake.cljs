@@ -107,15 +107,5 @@
    assoc
    ::ws/page
    :page/lake)
-  (try
-    (.parseInt "f")
-    (catch nil))
-  (rf/console
-   :log
-   (.parseInt "f"))
-  (get
-   (group-by
-    :group
-    [{:group 1 :fo "0"}
-     {:group 2 :fo "1"}])
-   1))
+
+)

@@ -42,21 +42,6 @@
    "click"
    @click-listener))
 
-;; (defn face [i]
-;;   (r/create-class
-;;    {:component-did-mount
-;;     (fn [cmp]
-;;       (let [node (reagent.dom/dom-node cmp)]
-;;         (swap! face-nodes conj node)))
-;;     :component-will-unmount
-;;     (fn [cmp]
-;;       (let [node (reagent.dom/dom-node cmp)]
-;;         (swap! face-nodes disj node)))
-;;     :reagent-render
-;;     (fn []
-;;       [:div.ball
-;;        {:id (str :face- 0)}])}))
-
 (defn face []
   (r/create-class
    {:component-did-mount
@@ -71,26 +56,16 @@
     (fn []
       [:div.face {:id "my-face"}])}))
 
-
 (rf/reg-fx
  ::click
  (fn [value]
    {::make-face (second value)}))
 
-;; (defn
-;;   reset-face
-;;   [face]
-;;   (set! (.. face -style -visibility) "hidden")
-;;   (set! (.. face -style -top) "200px")
-;;   (set! (.. face -style -transform) "translateX(600px)")
-;;   ;; (set! (.. face -style -left) "600px")
-;;   )
-
 (rf/reg-event-fx
  ::click
- (fn [{:keys [event]}]
-   {::make-face
-    (peek event)}))
+ (fn
+   [{:keys [event]}]
+   {::make-face (peek event)}))
 
 (defn
   wiggle
@@ -137,35 +112,38 @@
   move-anim-1
   [face from]
   (reset-face face from)
-  (set!
-   (.. face -style -visibility)
-   "hidden")
-
-
-
-  )
+  (let [set-visible
+        (fn
+          []
+          (set!
+           (.. face -style -visibility)
+           "visible")
+          (set!
+           (.. (get-face) -style -transform)
+           "translateY(0px)"))]
+    (a/go
+      (a/<! (a/timeout 100))
+      (set-visible))))
 
 (comment
-
   (set!
    (.. (get-face) -style -transform)
    "translateY(0px)")
-
   (set!
    (.. (get-face) -style -transform)
    "translateY(+100%)")
   (set!
    (.. (get-face) -style -transform)
    "translateY(0px)")
-
   (set!
    (.. (get-face) -style -transform)
    "translateX(+130%)")
   (set!
    (.. (get-face) -style -transform)
    "translateY(-200%)")
-
-   (reset-face (get-face) :top)
+  (reset-face (get-face) :top)
+  (move-anim-1 (get-face) :top)
+  (wiggle (get-face))
 
   (set!
    (..

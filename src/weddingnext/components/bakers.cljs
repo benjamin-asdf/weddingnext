@@ -12,7 +12,7 @@
       elms]
      [weddingnext.components.input-field-with-btn
       :refer
-      [input-field-and-btn]]))
+      [answer-input]]))
 
 (rf/reg-sub
  ::answer
@@ -24,8 +24,6 @@
   [answer]
   (#{"90" "neunzig"} (u/s-sanitize answer)))
 
-
-
 (defn
   bakers
   []
@@ -33,23 +31,28 @@
     [:div.w-30.p-1
      [:p
       "Nun bist du in einer Hochzeitsbäkerei. "
-      "Tüchtige Bäker*innen backen geschaeftig"
+      "Tüchtige Bäker*innen backen geschaeftig. "
       "überall türmen sich die Mehlsäcke, Nüsse und karamellisierte Früchte"]
      [elms/devider]
      [:p
       "Neun Bäcker brauchen 90 Minuten für neun Hochzeitstorten. "
       "Wie lange dauert es für 24 Bäcker, 24 Torten zu backen?"]
-     [:div.p-0.ml-5
-      (input-field-and-btn
+     [:div
+      [answer-input
        answer
-       {:on-change (fn
-                     [e]
-                     (let [answer (-> e .-target .-value)]
-                       (rf/dispatch
-                        [::update-answer answer])))
-        :on-click (fn
-                    [_]
-                    (rf/dispatch [::submit]))})]]))
+       (fn
+         [e]
+         (let [answer (-> e .-target .-value)]
+           (rf/dispatch
+            [::update-answer answer])))]
+      "Minuten"
+      [:button.btn.ml-5
+       {:style elms/default-button-style
+        :on-click
+        (fn
+          [_]
+          (rf/dispatch [::submit]))}
+       "ok"]]]))
 
 (rf/reg-event-db
  ::update-answer
